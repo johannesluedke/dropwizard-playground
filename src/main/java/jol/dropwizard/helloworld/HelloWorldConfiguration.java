@@ -2,6 +2,7 @@ package jol.dropwizard.helloworld;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
+import io.dropwizard.db.DataSourceFactory;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ public class HelloWorldConfiguration extends Configuration {
 
     @Valid
     @NotNull
+    @JsonProperty("database")
     private DataSourceFactory database = new DataSourceFactory();
 
     @NotNull
@@ -43,5 +45,11 @@ public class HelloWorldConfiguration extends Configuration {
         this.defaultName = name;
     }
 
+    public DataSourceFactory getDataSourceFactory() {
+        return database;
+    }
 
+    public void setDatabase(DataSourceFactory database) {
+        this.database = database;
+    }
 }
